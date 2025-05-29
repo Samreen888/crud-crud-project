@@ -37,13 +37,24 @@ async function loadProducts() {
 
 // Add product to DOM
 function addProductToList(product) {
-  const li = document.createElement('li');
-  li.innerHTML = `
-    ${product.name} - ₹${product.price} - ${product.category}
-    <button class="delete-btn" onclick="deleteProduct('${product._id}', this)">Delete</button>
+  const col = document.createElement('div');
+  col.className = 'col-md-4 product-card';
+
+  col.innerHTML = `
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">${product.name}</h5>
+        <p class="card-text">
+          Price: ₹${product.price} <br>
+          Category: ${product.category}
+        </p>
+        <button class="btn btn-danger" onclick="deleteProduct('${product._id}', this)">Delete</button>
+      </div>
+    </div>
   `;
-  productList.appendChild(li);
+  productList.appendChild(col);
 }
+
 
 // Delete product
 async function deleteProduct(id, btn) {
